@@ -62,7 +62,6 @@ export default {
 			this.kw = e
 			// 根据关键词，查询搜索建议列表
 			this.getSearchList()
-			console.log(this.kw)
 		}, 500)
 	},
 	// 根据搜索关键词，搜索商品建议列表
@@ -87,7 +86,6 @@ export default {
 		uni.setStorageSync('kw', JSON.stringify(this.historyList))
 	},
 	gotoDetail(id){
-		console.log(id)
 		// 查询到搜索建议之后，调用 saveSearchHistory() 方法保存搜索关键词
 		this.saveSearchHistory()
 	},

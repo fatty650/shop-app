@@ -101,7 +101,7 @@ var components
 try {
   components = {
     mySearch: function () {
-      return __webpack_require__.e(/*! import() | components/my-search/my-search */ "components/my-search/my-search").then(__webpack_require__.bind(null, /*! @/components/my-search/my-search.vue */ 94))
+      return __webpack_require__.e(/*! import() | components/my-search/my-search */ "components/my-search/my-search").then(__webpack_require__.bind(null, /*! @/components/my-search/my-search.vue */ 85))
     },
   }
 } catch (e) {
@@ -299,7 +299,6 @@ var _default = {
         uni.switchTab({
           url: '/pages/cate/cate'
         });
-        console.log(item);
       }
     },
     // 定义获取楼层列表数据的方法

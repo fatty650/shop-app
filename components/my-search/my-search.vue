@@ -36,7 +36,6 @@
 		methods: {
 			// 点击了模拟的 input 输入框
 			searchBoxHandler() {
-				console.log('this is search')
 				// 触发外界通过 @click 绑定的 click 事件处理函数
 				this.$emit('click')
 			}

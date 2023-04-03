@@ -87,7 +87,6 @@ export default {
 				uni.switchTab({
 				  url: '/pages/cate/cate'
 				})
-				console.log(item)
 			}
 		},
 		// 定义获取楼层列表数据的方法
