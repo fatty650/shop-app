@@ -1,5 +1,9 @@
 <template>
   <view>
+	<!-- 使用自定义的搜索组件 -->
+	<view class="search-box">
+		<my-search @click="gotoSearch"></my-search>
+	</view>
     <!-- 轮播图区域 -->
     <swiper :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000" :circular="true">
 		<!-- 循环渲染轮播图的 item 项 -->
@@ -100,7 +104,11 @@ export default {
 			
 			this.floorList = res.message
 		},
-		
+		gotoSearch() {
+			uni.navigateTo({
+				url: '/subpkg/search/search'
+			})
+		}
 	},
 }
 </script>
@@ -109,35 +117,43 @@ export default {
 swiper {
  height: 330rpx;
 
- .swiper-item,
- image {
-   width: 100%;
-   height: 100%;
- }
+	.swiper-item,
+	image {
+		width: 100%;
+		height: 100%;
+	}
 }
 .nav-list {
-  display: flex;
-  justify-content: space-around;
-  margin: 15px 0;
+	display: flex;
+	justify-content: space-around;
+	margin: 15px 0;
 
-  .nav-img {
-    width: 128rpx;
-    height: 140rpx;
-  }
+	.nav-img {
+		width: 128rpx;
+		height: 140rpx;
+	}
 }
 .floor-title {
-  height: 60rpx;
-  width: 100%;
-  display: flex;
+	height: 60rpx;
+	width: 100%;
+	display: flex;
 }
 .right-img-box {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 
 .floor-img-box {
-  display: flex;
-  padding-left: 10rpx;
+	display: flex;
+	padding-left: 10rpx;
+}
+.search-box {
+	// 设置定位效果为“吸顶”，固定在顶部
+	position: sticky;
+	// 吸顶的“位置”
+	top: 0;
+	// 防止被轮播图覆盖
+	z-index: 999;
 }
 </style>

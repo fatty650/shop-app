@@ -234,8 +234,8 @@
 		/* #endif */
 		flex-direction: row;
 		position: relative;
-		padding: 10px;
-		// background-color: #fff;
+		padding: 16rpx;
+		background-color: #c00000;
 	}
 
 	.uni-searchbar__box {
