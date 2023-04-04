@@ -11161,7 +11161,13 @@ var _default = {
   state: function state() {
     return {
       // 读取本地的收货地址数据，初始化 address 对象
-      address: JSON.parse(uni.getStorageSync('address') || '{}')
+      address: JSON.parse(uni.getStorageSync('address') || '{}'),
+      // 登录成功之后的 token 字符串
+      token: uni.getStorageSync('token') || '',
+      // 用户的基本信息
+      userinfo: JSON.parse(uni.getStorageSync('userinfo') || '{}'),
+      // 重定向的 object 对象 { openType, from }
+      redirectInfo: null
     };
   },
   // 方法
@@ -11175,6 +11181,30 @@ var _default = {
     // 定义将 address 持久化存储到本地 mutations 方法
     saveAddressToStorage: function saveAddressToStorage(state) {
       uni.setStorageSync('address', JSON.stringify(state.address));
+    },
+    // 更新用户的基本信息
+    updateUserInfo: function updateUserInfo(state, userinfo) {
+      state.userinfo = userinfo;
+      // 通过 this.commit() 方法，调用 m_user 模块下的 saveUserInfoToStorage 方法，将 userinfo 对象持久化存储到本地
+      this.commit('m_user/saveUserInfoToStorage');
+    },
+    // 将 userinfo 持久化存储到本地
+    saveUserInfoToStorage: function saveUserInfoToStorage(state) {
+      uni.setStorageSync('userinfo', JSON.stringify(state.userinfo));
+    },
+    // 更新 token 字符串
+    updateToken: function updateToken(state, token) {
+      state.token = token;
+      // 通过 this.commit() 方法，调用 m_user 模块下的 saveTokenToStorage 方法，将 token 字符串持久化存储到本地
+      this.commit('m_user/saveTokenToStorage');
+    },
+    // 将 token 字符串持久化存储到本地
+    saveTokenToStorage: function saveTokenToStorage(state) {
+      uni.setStorageSync('token', state.token);
+    },
+    // 更新重定向的信息对象
+    updateRedirectInfo: function updateRedirectInfo(state, info) {
+      state.redirectInfo = info;
     }
   },
   // 数据包装器
@@ -11679,7 +11709,9 @@ exports.default = _default;
 /* 105 */,
 /* 106 */,
 /* 107 */,
-/* 108 */
+/* 108 */,
+/* 109 */,
+/* 110 */
 /*!*****************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-icons/components/uni-icons/icons.js ***!
   \*****************************************************************************************************************************/
@@ -12700,8 +12732,6 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 109 */,
-/* 110 */,
 /* 111 */,
 /* 112 */,
 /* 113 */,
@@ -12712,7 +12742,9 @@ exports.default = _default;
 /* 118 */,
 /* 119 */,
 /* 120 */,
-/* 121 */
+/* 121 */,
+/* 122 */,
+/* 123 */
 /*!************************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-swipe-action/components/uni-swipe-action-item/mpwxs.js ***!
   \************************************************************************************************************************************************/
@@ -12789,7 +12821,7 @@ var _default = mpMixins;
 exports.default = _default;
 
 /***/ }),
-/* 122 */
+/* 124 */
 /*!***************************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-swipe-action/components/uni-swipe-action-item/bindingx.js ***!
   \***************************************************************************************************************************************************/
@@ -12808,7 +12840,7 @@ var _default = bindIngXMixins;
 exports.default = _default;
 
 /***/ }),
-/* 123 */
+/* 125 */
 /*!**************************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-swipe-action/components/uni-swipe-action-item/mpother.js ***!
   \**************************************************************************************************************************************************/
@@ -12827,8 +12859,6 @@ var _default = otherMixins;
 exports.default = _default;
 
 /***/ }),
-/* 124 */,
-/* 125 */,
 /* 126 */,
 /* 127 */,
 /* 128 */,
@@ -12850,7 +12880,23 @@ exports.default = _default;
 /* 144 */,
 /* 145 */,
 /* 146 */,
-/* 147 */
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */
 /*!******************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js ***!
   \******************************************************************************************************************************************/
@@ -12865,9 +12911,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 148));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 149));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 150));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 164));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 165));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 166));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -12876,7 +12922,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 148 */
+/* 164 */
 /*!*****************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/en.json ***!
   \*****************************************************************************************************************************************/
@@ -12886,7 +12932,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-goods-nav.options.cart\":\"cart\",\"uni-goods-nav.buttonGroup.addToCart\":\"add to cart\",\"uni-goods-nav.buttonGroup.buyNow\":\"buy now\"}");
 
 /***/ }),
-/* 149 */
+/* 165 */
 /*!**********************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hans.json ***!
   \**********************************************************************************************************************************************/
@@ -12896,7 +12942,7 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"shop\",\"uni-good
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-goods-nav.options.cart\":\"购物车\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入购物车\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即购买\"}");
 
 /***/ }),
-/* 150 */
+/* 166 */
 /*!**********************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/zh-Hant.json ***!
   \**********************************************************************************************************************************************/
@@ -12906,14 +12952,14 @@ module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店铺\",\"uni-go
 module.exports = JSON.parse("{\"uni-goods-nav.options.shop\":\"店鋪\",\"uni-goods-nav.options.cart\":\"購物車\",\"uni-goods-nav.buttonGroup.addToCart\":\"加入購物車\",\"uni-goods-nav.buttonGroup.buyNow\":\"立即購買\"}");
 
 /***/ }),
-/* 151 */,
-/* 152 */,
-/* 153 */,
-/* 154 */,
-/* 155 */,
-/* 156 */,
-/* 157 */,
-/* 158 */
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */
 /*!********************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js ***!
   \********************************************************************************************************************************************/
@@ -12928,9 +12974,9 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 159));
-var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 160));
-var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 161));
+var _en = _interopRequireDefault(__webpack_require__(/*! ./en.json */ 175));
+var _zhHans = _interopRequireDefault(__webpack_require__(/*! ./zh-Hans.json */ 176));
+var _zhHant = _interopRequireDefault(__webpack_require__(/*! ./zh-Hant.json */ 177));
 var _default = {
   en: _en.default,
   'zh-Hans': _zhHans.default,
@@ -12939,7 +12985,7 @@ var _default = {
 exports.default = _default;
 
 /***/ }),
-/* 159 */
+/* 175 */
 /*!*******************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-search-bar/components/uni-search-bar/i18n/en.json ***!
   \*******************************************************************************************************************************************/
@@ -12949,7 +12995,7 @@ exports.default = _default;
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"Search enter content\"}");
 
 /***/ }),
-/* 160 */
+/* 176 */
 /*!************************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hans.json ***!
   \************************************************************************************************************************************************/
@@ -12959,7 +13005,7 @@ module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-
 module.exports = JSON.parse("{\"uni-search-bar.cancel\":\"cancel\",\"uni-search-bar.placeholder\":\"请输入搜索内容\"}");
 
 /***/ }),
-/* 161 */
+/* 177 */
 /*!************************************************************************************************************************************************!*\
   !*** E:/Web-Practice/uni-app/shopStore/shop-store-vue2/shop-store-vue2/uni_modules/uni-search-bar/components/uni-search-bar/i18n/zh-Hant.json ***!
   \************************************************************************************************************************************************/
