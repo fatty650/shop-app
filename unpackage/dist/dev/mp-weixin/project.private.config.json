@@ -20,6 +20,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "cart",
+          "pathName": "pages/cart/cart",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
